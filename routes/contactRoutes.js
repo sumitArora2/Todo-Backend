@@ -8,7 +8,7 @@ import {
 } from "../controllers/contactController.js";
 import { protect, admin } from "../middleware/authMiddleware.js";
 
-router.route("/").get(getContacts).post(sendContact);
+router.route("/").get(protect, admin, getContacts).post(sendContact);
 router.route("/:id").get(getContactById).delete(deleteContact);
 
 export default router;
