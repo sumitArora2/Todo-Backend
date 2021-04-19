@@ -28,19 +28,20 @@ const authUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, firebaseUid, phoneNumber } = req.body;
 
-  const userExists = await User.findOne({ email });
+  // const userExists = await User.findOne({ email });
 
-  if (userExists) {
-    res.status(400);
-    throw new Error("User already exists");
-  }
+  // if (userExists) {
+  //   res.status(400);
+  //   throw new Error("User already exists");
+  // }
 
   const user = await User.create({
     name,
     email,
-    password,
+    firebaseUid,
+    phoneNumber
   });
 
   if (user) {
@@ -49,7 +50,9 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      token: generateToken(user._id),
+      phoneNumber:user.phoneNumber,
+      firebaseUid:user.firebaseUid
+      // token: generateToken(user._id),
     });
   } else {
     res.status(400);
