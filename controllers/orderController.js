@@ -13,6 +13,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     taxPrice,
     shippingPrice,
     totalPrice,
+    userId
   } = req.body;
 
   if (orderItems && orderItems.length === 0) {
@@ -22,7 +23,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
   } else {
     const order = new Order({
       orderItems,
-      user: req.user._id,
+      user: userId,
       shippingAddress,
       paymentMethod,
       itemsPrice,

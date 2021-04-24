@@ -9,11 +9,11 @@ import {
 } from "../controllers/categoryController.js";
 import { protect, admin } from "../middleware/authMiddleware.js";
 
-router.route("/").get(getCategory).post(protect, admin, createCategory);
+router.route("/").get(getCategory).post(createCategory);
 router
   .route("/:id")
-  .get(protect, admin, getCategoryById)
-  .delete(protect, admin, deleteCategory)
-  .put(protect, admin, updateCategory);
+  .get(getCategoryById)
+  .delete(deleteCategory)
+  .put(updateCategory);
 
 export default router;
