@@ -74,6 +74,7 @@ const updateCategory = asyncHandler(async (req, res) => {
     category.name = name.trim();
     category.image = image.trim();
     const categoryProduct = await category.save();
+    
     res.json(categoryProduct);
   } else {
     res.status(404);
