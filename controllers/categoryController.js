@@ -71,8 +71,8 @@ const updateCategory = asyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id);
 
   if (category) {
-    category.name = name;
-    category.image = image;
+    category.name = name.trim();
+    category.image = image.trim();
     const categoryProduct = await category.save();
     res.json(categoryProduct);
   } else {
