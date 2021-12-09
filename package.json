@@ -1,7 +1,7 @@
 {
-  "name": "pharma",
+  "name": "todo",
   "version": "1.0.0",
-  "description": "MERN shopping cart app",
+  "description": "todo app with authentication",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -10,20 +10,22 @@
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d"
   },
-  "author": "Brad Traversy",
+  "author": "sumit arora",
   "license": "MIT",
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
+    "cors": "*",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "cloudinary": "^1.21.0",
     "express-async-handler": "^1.1.4",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.6",
     "morgan": "^1.10.0",
-    "multer": "^1.4.2",
-    "cors": "*"
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.2.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

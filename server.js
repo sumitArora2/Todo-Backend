@@ -1,60 +1,86 @@
-import path from "path";
 import express from "express";
 import dotenv from "dotenv";
-import colors from "colors";
+
 import morgan from "morgan";
+import colors from "colors";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
 import cors from "cors";
-import productRoutes from "./routes/productRoutes.js";
-import contactRoutes from "./routes/contactRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import orderRoutes from "./routes/orderRoutes.js";
-import categoryRoutes from "./routes/categoryRoutes.js";
-import uploadRoutes from "./routes/uploadRoutes.js";
-
+import todoRoutes from "./routes/todoRoutes.js";
 dotenv.config();
-
+import  swaggerUi from 'swagger-ui-express';
+import swaggerJsdoc from 'swagger-jsdoc'
+import logger from './config/winston.js';
 connectDB();
+ 
 
 const app = express();
 app.use(cors());
 if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
+  app.use(morgan('combined', { stream: logger.stream }));
 }
 
 app.use(express.json());
 
-app.use("/api/products", productRoutes);
-app.use("/api/categories", categoryRoutes);
+const swaggerOptions={
+  definition:{
+   openapi:'3.0.0',
+    info:{
+      title:'Node.js API Project',
+      description:'customer api information',
+      contact:{
+        name:"Amazing developer"
+      }
+    },
+    servers:[
+      {url:  "http://localhost:5000"}
+      ]
+  },
+  apis:["app.js"]
+  }
+  
+  const swaggerDocs=swaggerJsdoc(swaggerOptions)
+  
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+  
+
 app.use("/api/users", userRoutes);
-app.use("/api/orders", orderRoutes);
-app.use("/api/contacts", contactRoutes);
-app.use("/api/upload", uploadRoutes);
+app.use("/api/todo", todoRoutes);
 
-// app.get("/api/config/paypal", (req, res) =>
-//   res.send(process.env.PAYPAL_CLIENT_ID)
-// );
-
-const __dirname = path.resolve();
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
-
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "/frontend/build")));
-
-//   app.get("*", (req, res) =>
-//     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
-//   );
-// } else {
+/**
+ * @swagger
+ * /:
+ *  get
+ *    summary:new get request
+ *    description:new get request
+ *    responses: 
+ *       200:
+ *          description:to Test get method     
+ */
   app.get("/", (req, res) => {
     res.send("API is running....");
   });
-// }
+
 
 app.use(notFound);
-app.use(errorHandler);
+// app.use(errorHandler);
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // add this line to include winston logging
+  logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 const PORT = process.env.PORT || 5000;
+
 
 app.listen(
   PORT,

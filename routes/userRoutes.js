@@ -12,7 +12,12 @@ import {
 } from "../controllers/userController.js";
 import { protect, admin } from "../middleware/authMiddleware.js";
 
-router.route("/").post(registerUser).get(protect, admin, getUsers);
+/**
+ * @swagger
+ * get
+ *  params
+ */
+router.route("/").post(registerUser).get(getUsers);
 router.post("/login", authUser);
 router
   .route("/profile")
