@@ -6,6 +6,9 @@ import User from "../models/userModel.js";
 // @route   POST /api/users/login
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
+  /* 	#swagger.tags = ['User']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
@@ -28,6 +31,9 @@ const authUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
+  /* 	#swagger.tags = ['User']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   const { name, email, password } = req.body;
 
   const userExists = await User.findOne({ email });
@@ -61,6 +67,9 @@ const registerUser = asyncHandler(async (req, res) => {
 // @route   GET /api/users/profile
 // @access  Private
 const getUserProfile = asyncHandler(async (req, res) => {
+  /* 	#swagger.tags = ['User']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   const user = await User.findById(req.user._id);
 
   if (user) {
@@ -80,6 +89,9 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route   PUT /api/users/profile
 // @access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
+  /* 	#swagger.tags = ['User']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   const user = await User.findById(req.user._id);
 
   if (user) {
@@ -108,6 +120,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route   GET /api/users
 // @access  Private/Admin
 const getUsers = asyncHandler(async (req, res) => {
+  /* 	#swagger.tags = ['User']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   const pageSize = 10;
   const page = Number(req.query.pageNumber) || 1;
   const count = await User.countDocuments({});
@@ -121,6 +136,9 @@ const getUsers = asyncHandler(async (req, res) => {
 // @route   DELETE /api/users/:id
 // @access  Private/Admin
 const deleteUser = asyncHandler(async (req, res) => {
+  /* 	#swagger.tags = ['User']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   const user = await User.findById(req.params.id);
 
   if (user) {
@@ -136,6 +154,9 @@ const deleteUser = asyncHandler(async (req, res) => {
 // @route   GET /api/users/:id
 // @access  Private/Admin
 const getUserById = asyncHandler(async (req, res) => {
+  /* 	#swagger.tags = ['User']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   const user = await User.findById(req.params.id).select("-password");
 
   if (user) {
@@ -150,6 +171,9 @@ const getUserById = asyncHandler(async (req, res) => {
 // @route   PUT /api/users/:id
 // @access  Private/Admin
 const updateUser = asyncHandler(async (req, res) => {
+  /* 	#swagger.tags = ['User']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   const user = await User.findById(req.params.id);
 
   if (user) {

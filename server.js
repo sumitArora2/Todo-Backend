@@ -1,5 +1,7 @@
+import path from "path";
 import express from "express";
 import dotenv from "dotenv";
+import colors from "colors";
 import morgan from "morgan";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
@@ -30,7 +32,7 @@ app.get("/", (req, res) => {
   res.send("API is running....");
 });
 
-app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use(notFound);
 // error handler

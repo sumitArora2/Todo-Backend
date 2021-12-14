@@ -46,8 +46,10 @@
     },
     "/api/users/": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "pageNumber",
@@ -62,8 +64,10 @@
         }
       },
       "post": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "obj",
@@ -96,8 +100,10 @@
     },
     "/api/users/login": {
       "post": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "obj",
@@ -127,8 +133,10 @@
     },
     "/api/users/profile": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "authorization",
@@ -149,8 +157,10 @@
         }
       },
       "put": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "authorization",
@@ -191,8 +201,10 @@
     },
     "/api/users/{id}": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "id",
@@ -219,8 +231,10 @@
         }
       },
       "put": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "id",
@@ -265,8 +279,10 @@
         }
       },
       "delete": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "id",
@@ -295,8 +311,10 @@
     },
     "/api/todo/": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Todo"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [],
         "responses": {
           "201": {
@@ -308,8 +326,10 @@
         }
       },
       "post": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Todo"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "obj",
@@ -342,8 +362,10 @@
     },
     "/api/todo/getUserTodo/{id}": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Todo"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "id",
@@ -364,8 +386,10 @@
     },
     "/api/todo/deleteTodo/{id}": {
       "delete": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Todo"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "id",
@@ -386,8 +410,10 @@
     },
     "/api/todo/updateUserTodo/{id}": {
       "put": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Todo"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "id",
@@ -420,8 +446,10 @@
     },
     "/api/todo/updateTodo/{id}": {
       "put": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Todo"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
           {
             "name": "id",

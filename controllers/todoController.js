@@ -6,6 +6,9 @@ import Todo from "../models/todoModel.js";
 // @access  Private
 const getAllTodo = asyncHandler(async (req, res) => {
   const todo = await Todo.find();
+  /* 	#swagger.tags = ['Todo']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   if (todo) {
     return res.status(201).send(todo);
   } else {
@@ -20,6 +23,9 @@ const getAllTodo = asyncHandler(async (req, res) => {
 // @access  Private
 const getUserTodo = asyncHandler(async (req, res) => {
   const todo = await Todo.find({ assignee: req.params.id });
+  /* 	#swagger.tags = ['Todo']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   if (todo) {
     res.json({
       _id: todo[0]._id,
@@ -35,6 +41,9 @@ const getUserTodo = asyncHandler(async (req, res) => {
 
 const deleteTodo = asyncHandler(async (req, res) => {
   const todo = await Todo.remove({ _id: req.params.id });
+  /* 	#swagger.tags = ['Todo']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   if (todo) {
     res.json({
       message: "Todo removed successfully"
@@ -51,6 +60,8 @@ const deleteTodo = asyncHandler(async (req, res) => {
 // @access  Private
 const addTodo = asyncHandler(async (req, res) => {
   const { task_name, completed, assignee } = req.body;
+  /* 	#swagger.tags = ['Todo']
+      #swagger.description = 'Endpoint to sign in a specific user' */
 
   const todo = await Todo.create({
     task_name,
@@ -76,6 +87,9 @@ const addTodo = asyncHandler(async (req, res) => {
 // @access  Private
 const updateTodo = asyncHandler(async (req, res) => {
   const todo = await Todo.findById(req.params.id);
+  /* 	#swagger.tags = ['Todo']
+    #swagger.description = 'Endpoint to sign in a specific user' */
+
   console.log("req.body.completed", req.body.completed)
   if (todo) {
     todo.task_name = req.body.task_name || todo.task_name;
@@ -102,6 +116,8 @@ const updateTodo = asyncHandler(async (req, res) => {
 
 const updateUserTodo = asyncHandler(async (req, res) => {
   const todo = await Todo.findById(req.params.id);
+  /* 	#swagger.tags = ['Todo']
+      #swagger.description = 'Endpoint to sign in a specific user' */
 
   if (todo) {
     todo.completed = req.body.completed || todo.completed;
