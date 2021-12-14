@@ -33,6 +33,19 @@ const getUserTodo = asyncHandler(async (req, res) => {
   }
 });
 
+const deleteTodo = asyncHandler(async (req, res) => {
+  const todo = await Todo.remove({ _id: req.params.id });
+  if (todo) {
+    res.json({
+      message: "Todo removed successfully"
+    });
+  } else {
+    res.status(404);
+    throw new Error("todo not found");
+  }
+});
+
+
 // @desc    Get user profile
 // @route   GET /api/users/profile
 // @access  Private
@@ -111,5 +124,6 @@ export {
   updateTodo,
   updateUserTodo,
   addTodo,
-  getUserTodo
+  getUserTodo,
+  deleteTodo
 };
